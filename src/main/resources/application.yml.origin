@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    url:
+    username:
+    password:
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+
+telegram:
+    webhook-path:
+    bot-name:
+    bot-token:
+
+server:
+  port: 8080
+
+openai:
+  api_key:
+  model: gpt-3.5-turbo
+  max_tokens: 1000
+  temperature: 1.0
+  url: https://api.openai.com/v1/chat/completions
+
+management:
+  endpoints.web.exposure.include: 'prometheus, health'
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
