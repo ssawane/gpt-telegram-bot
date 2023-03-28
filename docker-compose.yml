@@ -5,6 +5,8 @@ services:
     image: ssawane/gptbot:amd
     ports:
       - 8080:8080
+    volumes:
+      - .logs:/logs
 
   prometheus:
     image: prom/prometheus
