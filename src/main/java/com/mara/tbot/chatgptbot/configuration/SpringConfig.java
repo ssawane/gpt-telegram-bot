@@ -14,7 +14,6 @@ import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 @Configuration
 @RequiredArgsConstructor
 public class SpringConfig {
-
     private final TelegramProperties telegramProperties;
     private final MessageHandler messageHandler;
     private final CallbackQueryHandler callbackQueryHandler;

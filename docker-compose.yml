@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    image: ssawane/gptbot:latest
+    image: ssawane/gptbot:amd
     ports:
       - 8080:8080
 
@@ -15,8 +15,12 @@ services:
 
   grafana:
     image: grafana/grafana
+    restart: always
     ports:
       - 3000:3000
-    environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana-storage:/var/lib/grafana
+
+volumes:
+  grafana-storage:
+    external: true

@@ -2,6 +2,7 @@ package com.mara.tbot.chatgptbot.properties;
 
 import jakarta.annotation.PostConstruct;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -11,6 +12,7 @@ import java.util.Map;
 
 @Component
 @Data
+@Slf4j
 public class TelegramProperties {
     @Value("${telegram.webhook-path}")
     private String webhookPath;
@@ -28,6 +30,9 @@ public class TelegramProperties {
         Map<String, String> vars = new HashMap<>();
         vars.put("TOKEN", botToken);
         vars.put("URL", webhookPath);
-        restTemplate.getForObject("https://api.telegram.org/bot{TOKEN}/setWebhook?url={URL}", String.class, vars);
+        String webhookMessage = restTemplate.getForObject(
+                "https://api.telegram.org/bot{TOKEN}/setWebhook?url={URL}", String.class, vars
+        );
+        log.info(webhookMessage);
     }
 }

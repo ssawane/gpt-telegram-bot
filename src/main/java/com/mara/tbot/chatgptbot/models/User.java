@@ -21,6 +21,9 @@ public class User {
     @Column(name = "tg_user_id")
     private Long tgUserId;
 
+    @Column(name = "chatId")
+    private Long chatId;
+
     @Column(name = "username")
     private String username;
 
@@ -42,10 +45,11 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Query> queries;
 
-    public User(Long tgUserId, String username, String firstname, String lastname) {
+    public User(Long tgUserId, String username, String firstname, String lastname, Long chatId) {
         this.tgUserId = tgUserId;
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.chatId = chatId;
     }
 }

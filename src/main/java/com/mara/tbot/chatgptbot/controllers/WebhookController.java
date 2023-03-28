@@ -2,7 +2,6 @@ package com.mara.tbot.chatgptbot.controllers;
 
 import com.mara.tbot.chatgptbot.bot.ChatGPTBot;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.Update;

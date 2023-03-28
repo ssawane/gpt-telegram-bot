@@ -10,6 +10,7 @@ import com.mara.tbot.chatgptbot.models.Query;
 import com.mara.tbot.chatgptbot.util.OpenAiBadResponseException;
 import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -23,8 +24,8 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class ChatGPT {
-
     private final ChatGPTProperties chatGPTProperties;
     private static final int MAX_CONTEXT_SIZE = 5;
     private static final int MAX_LAST_MESSAGE_SIZE = 150;
@@ -44,8 +45,12 @@ public class ChatGPT {
         );
 
         ChatResponseBody responseBody = responseEntity.getBody();
-        if (responseEntity.getStatusCode() != HttpStatus.OK || responseBody == null)
+        if (responseEntity.getStatusCode() != HttpStatus.OK || responseBody == null) {
+            log.error("Bad OpenAi response for query: " + messageToSend);
             throw new OpenAiBadResponseException();
+        }
+
+        log.info("Success response: " + messageToSend);
 
         return new Query(
                 messageToSend,

@@ -8,7 +8,6 @@ import com.mara.tbot.chatgptbot.models.User;
 import com.mara.tbot.chatgptbot.services.QueryService;
 import com.mara.tbot.chatgptbot.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.ParseMode;
@@ -158,7 +157,8 @@ public class MessageHandler {
 
         if (user.isEmpty())
             userService.save(new User(tgUserId, message.getFrom().getUserName(),
-                    message.getFrom().getFirstName(), message.getFrom().getLastName()));
+                    message.getFrom().getFirstName(), message.getFrom().getLastName(),
+                    message.getChatId()));
         SendMessage sendMessage = new SendMessage(chatId.toString(),
                 "Hello! I am a bot to use ChatGPT.\n" +
                         "The bot understands the context. OpenAi model version: \"gpt-3.5-turbo\".");

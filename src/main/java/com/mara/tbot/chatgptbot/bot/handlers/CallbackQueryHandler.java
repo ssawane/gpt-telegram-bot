@@ -3,7 +3,6 @@ package com.mara.tbot.chatgptbot.bot.handlers;
 import com.mara.tbot.chatgptbot.bot.keyboards.InlineKeyboardMaker;
 import com.mara.tbot.chatgptbot.bot.keyboards.ReplyKeyboardMaker;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;

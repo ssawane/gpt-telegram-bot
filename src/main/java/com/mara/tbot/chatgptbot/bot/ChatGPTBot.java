@@ -3,6 +3,7 @@ package com.mara.tbot.chatgptbot.bot;
 import com.mara.tbot.chatgptbot.bot.handlers.CallbackQueryHandler;
 import com.mara.tbot.chatgptbot.bot.handlers.MessageHandler;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
@@ -10,6 +11,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.starter.SpringWebhookBot;
 
 @Setter
+@Slf4j
 public class ChatGPTBot extends SpringWebhookBot {
 
     private String webhookPath;
@@ -29,6 +31,8 @@ public class ChatGPTBot extends SpringWebhookBot {
         try {
             return handleUpdate(update);
         } catch (Exception e) {
+            log.error("Received an error while handling update from user. Update message text: "
+                    + update.getMessage().getText());
             e.printStackTrace();
             return new SendMessage(update.getMessage().getChatId().toString(),
                     "Something went wrong!");
